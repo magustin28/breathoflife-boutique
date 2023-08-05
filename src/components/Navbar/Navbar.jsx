@@ -8,9 +8,9 @@ const Navbar = ({ title }) => {
             <div className="d-flex justify-content-between w-100 mx-5">
                 <Header />
                 <div className="">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         {title.map((elementos) => (
-                            <li key={elementos.id} class="nav-item">
+                            <li key={elementos.id} className="nav-item mx-2">
                                 <a className="nav-link" href="#">{elementos.title}</a>
                             </li>
                         ))}

@@ -3,18 +3,19 @@ import Navbar from "./Navbar";
 
 const ElementosNavbar = [
     { id: 1, title: "Nosotros" },
-    { id: 2, title: "Productos" },
-    { id: 3, title: "Contacto" },
-    { id: 4, title: "Iniciar Sesión" },
-    { id: 5, title: "Registrarse" }
+    { id: 2, title: "Categorias" },
+    { id: 3, title: "Productos" },
+    { id: 4, title: "Contacto" },
+    { id: 5, title: "Iniciar Sesión" },
+    { id: 6, title: "Registrarse" }
 ]
 
 
 const NavbarContainer = () =>{
     return(
-        <div>
+        <>
             <Navbar title={ElementosNavbar}/>
-        </div>
+        </>
     )
 };
 

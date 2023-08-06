@@ -1,5 +1,5 @@
 {
-  "homepage": "https://magustin28.github.io/breathoflife-boutique",
+  "homepage": "https://magustin28.github.io/e-commerce@yoga",
   "name": "vite-project",
   "private": true,
   "version": "0.0.0",
@@ -10,7 +10,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "bootstrap": "^5.3.1",

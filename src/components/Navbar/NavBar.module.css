@@ -1,0 +1,11 @@
+.navbar {
+    margin-top: 1.1rem;
+    padding: 0 2rem;
+    border: 2px solid black;
+    border-radius: 15px;
+}
+
+.links:hover{
+    box-shadow: 1px 1px 5px black;
+    transform: scale(0.9);
+}

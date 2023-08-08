@@ -1,12 +1,15 @@
-import React from "react"
 import NavbarContainer from "./components/Navbar/NavbarContainer"
-import CardContainer from "./components/Card/CardContainer"
+import ItemListContainer from "./components/ItemListContainer/ItemListContainer"
 
 function App() {
   return (
     <div className="container">
+      {/* Navbar */}
       <NavbarContainer />
-      <CardContainer />
+
+      {/* ItemListContainer */}
+      <ItemListContainer greeting="Bienvenidos a BreathOfLife Boutique" />
+
     </div>
   )
 };

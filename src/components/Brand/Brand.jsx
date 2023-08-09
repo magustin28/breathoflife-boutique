@@ -1,6 +1,5 @@
 import styles from "./Brand.module.css";
 
-
 const Brand = ({ }) => {
     return (
         <div className="d-flex align-items-center gap-2">

@@ -1,6 +1,4 @@
-import React from "react";
 import Navbar from "./NavBar";
-
 
 const ElementosNavbar = [
     { id: 1, title: "Nosotros" },

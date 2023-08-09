@@ -1,5 +1,3 @@
-
-
 const CartWignet = ({ productsInCart, funcion}) => {
    return (
       <div>

@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom"
-
 import NavbarContainer from "./components/Navbar/NavbarContainer"
 import ItemListContainer from "./components/ItemList/ItemListContainer"
 import ItemDetailContainer from "./components/ItemDetail/ItemDetailContainer"
@@ -18,12 +17,7 @@ function App() {
         <Route path="/e-commerce-yoga/item/:id" element={<ItemDetailContainer />} />
         <Route path="/e-commerce-yoga/about" element={<About />} />
         <Route path="/e-commerce-yoga/contact" element={<Contact />} />
-
       </Routes>
-
-
-
-
     </div>
   )
 };

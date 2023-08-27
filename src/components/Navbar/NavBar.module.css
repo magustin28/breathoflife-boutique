@@ -3,9 +3,14 @@
     padding: 0 2rem;
     border: 2px solid black;
     border-radius: 15px;
+    background-color: #E0CDA9;
 }
 
 .links:hover{
-    box-shadow: 1px 1px 5px black;
+    box-shadow: 1px 1px 5px rgba(255, 255, 255, 0.8)hite;
     transform: scale(0.9);
+}
+
+.linksActive{
+    color: aqua;
 }

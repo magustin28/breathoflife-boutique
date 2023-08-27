@@ -1,0 +1,11 @@
+.title {
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8)
+}
+
+.isLoading {
+   margin: 2rem;
+}
+
+.bgcard{
+    background-color: #E0CDA9;
+}

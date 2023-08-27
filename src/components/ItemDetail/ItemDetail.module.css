@@ -1,0 +1,13 @@
+.isLoading {
+   margin: 2rem;
+}
+
+.item{
+    box-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+}
+
+
+.description {
+    font-style: italic;
+    color: #555;
+}

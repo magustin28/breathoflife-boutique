@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import Brand from "../Brand/Brand";
 import CartWidgetContainer from "../CartWidget/CartWidgetContainer";
 import styles from './Navbar.module.css';
@@ -14,15 +15,12 @@ const Navbar = ({ title }) => {
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-center w-100">
                     {title.map((elementos) => (
                         <li key={elementos.id} className="nav-item mx-2">
-                            <a className={`nav-link ${styles.links}`} href="#">{elementos.title}</a>
+                            <NavLink className={(isActive) => isActive ? `nav-link ${styles.linksActive}` : `nav-link ${styles.links}`} to={`/e-commerce-yoga/${elementos.category === undefined ? elementos.page : `category/${elementos.category}`}`}>{elementos.title}</NavLink>
                         </li>
-                    )
-                    )}
+                    ))}
                 </ul>
-
                 {/* CartWignet */}
                 <CartWidgetContainer />
-
             </div>
         </nav>
     );

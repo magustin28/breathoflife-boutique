@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-import { obtenerProductos } from '../../assets/productos';
+import { getItems } from '../../assets/productos';
 import ItemList from './ItemList';
 
 const ItemListContainer = () => {
@@ -10,7 +10,7 @@ const ItemListContainer = () => {
 
     useEffect(() => {
         setisLoanding(true);
-        obtenerProductos(id).then((response) => {
+        getItems(id).then((response) => {
             setItems(response);
             setisLoanding(false);
         });

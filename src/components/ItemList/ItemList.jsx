@@ -1,7 +1,6 @@
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
 import { Link } from "react-router-dom";
 import style from './ItemList.module.css';
-
 
 const ItemList = ({ products, isLoading }) => {
 
@@ -25,7 +24,7 @@ const ItemList = ({ products, isLoading }) => {
                                     <p className="my-2 mx-4 fs-5 fw-bolder">${item.price}</p>
                                     <p className="my-2 mx-4 badge text-bg-success">{item.category}</p>
                                 </div>
-                                <Link to={`/e-commerce-yoga/item/${item.id}`} class="btn btn-light">Ver detalle</Link>
+                                <Link to={`/e-commerce-yoga/item/${item.id}`} className="btn btn-light">Ver detalle</Link>
                             </div>
                         </div>))}
                 </div>
@@ -35,8 +34,8 @@ const ItemList = ({ products, isLoading }) => {
 };
 
 ItemList.propTypes = {
-    products: PropTypes.array.isRequired,
-    isLoading: PropTypes.bool.isRequired,
+    products: propTypes.array.isRequired,
+    isLoading: propTypes.bool.isRequired,
 };
 
 export default ItemList;

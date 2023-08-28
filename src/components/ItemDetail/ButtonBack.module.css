@@ -1,0 +1,9 @@
+/* ESTILOS PARTICULARES */
+/* estilos -> buttonBack */
+.buttonBack{
+    cursor: pointer;
+}
+
+.buttonBack:hover{
+    text-decoration: underline;
+}

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-import { obtenerProducto } from '../../assets/productos';
+import { useNavigate } from "react-router-dom";
+import { getItem } from '../../assets/productos';
 import ItemDetail from './ItemDetail';
 
 
@@ -10,9 +11,10 @@ const ItemDetailContainer = () => {
     const [stock, setStock] = useState(0);
     const [isInStock, setisInStock] = useState(true);
     const { id } = useParams();
+    const navigate  = useNavigate();
 
     useEffect(() => {
-        obtenerProducto(id)
+        getItem(id)
             .then((response) => {
                 setItem(response);
                 setStock(parseInt(response.stock));
@@ -28,8 +30,12 @@ const ItemDetailContainer = () => {
             })
     }, [id]);
 
+    const handleGoBack = () => {
+        navigate(-1);
+    };
+
     return (
-        <ItemDetail item={item} isLoading={isLoading} stock={stock} isInStock={isInStock} />
+        <ItemDetail item={item} isLoading={isLoading} stock={stock} isInStock={isInStock} botonVolver={handleGoBack} />
     );
 };
 

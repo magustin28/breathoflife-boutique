@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import propTypes from "prop-types";
 import Brand from "../Brand/Brand";
 import CartWidgetContainer from "../CartWidget/CartWidgetContainer";
 import styles from './Navbar.module.css';
@@ -24,6 +25,10 @@ const Navbar = ({ title }) => {
             </div>
         </nav>
     );
+};
+
+Navbar.propTypes = {
+    title: propTypes.array.isRequired,
 };
 
 export default Navbar;

@@ -1,11 +1,15 @@
+/* ESTILOS PARTICULARES */
+/* estilos -> Título */
 .title {
     text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8)
 }
 
+/* estilos -> isLoading */
 .isLoading {
-   margin: 2rem;
+    margin: 2rem;
 }
 
-.bgcard{
+/* estilos -> Card */
+.bgcard {
     background-color: #E0CDA9;
 }

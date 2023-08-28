@@ -1,14 +1,22 @@
+/* ESTILOS PARTICULARES */
+/* estilos -> isLoading */
 .isLoading {
-   margin: 2rem;
+    margin: 2rem;
 }
 
-.item{
+/* estilos -> Item */
+.item {
     box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
     background-color: #E0CDA9;
 }
 
-
+/* estilos -> Descripcion */
 .description {
     font-style: italic;
     color: #555;
+}
+
+/* estilos -> Imagen */
+.imageItem {
+    width: 32rem;
 }

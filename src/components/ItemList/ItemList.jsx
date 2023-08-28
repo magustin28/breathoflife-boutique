@@ -20,12 +20,12 @@ const ItemList = ({ products, isLoading }) => {
                         <div key={item.id} className={`card col-3 m-3 shadow ${style.bgcard}`}>
                             <img src={item.img} className="card-img-top mt-2" alt="..." />
                             <div className="card-body d-flex flex-column justify-content-between">
-                                <h5 className="card-title h-25 pb-3">{item.name}</h5>
+                                <h5 className="card-title h-25 pb-3 fw-normal">{item.name}</h5>
                                 <div className="d-flex justify-content-between align-items-center">
-                                    <p className="my-2 mx-4">${item.price}</p>
-                                    <p className="my-2 mx-4 badge text-bg-info">{item.category}</p>
+                                    <p className="my-2 mx-4 fs-5 fw-bolder">${item.price}</p>
+                                    <p className="my-2 mx-4 badge text-bg-success">{item.category}</p>
                                 </div>
-                                <Link to={`/e-commerce-yoga/item/${item.id}`} class="btn btn-primary">Ver detalle</Link>
+                                <Link to={`/e-commerce-yoga/item/${item.id}`} class="btn btn-light">Ver detalle</Link>
                             </div>
                         </div>))}
                 </div>

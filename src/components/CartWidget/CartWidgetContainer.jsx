@@ -1,17 +1,16 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import CartWignet from "./CartWidget";
+import CartContext from "../../context/CartContext";
 
 const CartWidgetContainer = () => {
+  const { cart, sumarQuantity } = useContext(CartContext);
+  const [quantityInCart, setQuantityInCart] = useState(null);
 
-    const [cart, setCart] = useState(0);
+  useEffect(() => {
+    setQuantityInCart(sumarQuantity);
+  }, [cart]);
 
-    const incrementar = () => {
-        setCart(cart + 1);
-    }
-
-    return (
-        <CartWignet productsInCart={cart} funcion={incrementar} />
-    )
-}
+  return <CartWignet quantityInCart={quantityInCart} />;
+};
 
 export default CartWidgetContainer;

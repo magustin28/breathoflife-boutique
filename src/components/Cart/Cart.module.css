@@ -1,0 +1,31 @@
+/* ESTILOS PARTICULARES */
+/* estilos -> RemoveItem */
+.removeItem {
+  cursor: pointer;
+  color: #3483fa;
+  font-weight: 600;
+}
+
+.removeItem:hover {
+  text-decoration: underline;
+}
+
+/* estilos -> Bag */
+.bag {
+  font-size: 4rem;
+}
+
+/* estilos -> Resumen de compra */
+.summaryContainer {
+  height: 17rem;
+}
+
+/* estilos -> Envio */
+.envio {
+  color: #00a650;
+}
+
+/* estilos -> Bg */
+.bgcart {
+  background-color: #e0cda9;
+}

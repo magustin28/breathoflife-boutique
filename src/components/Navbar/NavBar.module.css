@@ -1,15 +1,15 @@
 /* ESTILOS PARTICULARES */
 /* estilos -> Navbar */
 .navbar {
-    margin-top: 1.1rem;
-    padding: 0 2rem;
-    border: 1px solid black;
-    border-radius: 15px;
-    box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
-    background-color: #E0CDA9;
+  margin-top: 1.1rem;
+  padding: 0 2rem;
+  border: 1px solid black;
+  border-radius: 15px;
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+  background-color: #e0cda9;
 }
 
-.links:hover{
-    box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
-    transform: scale(1.1);
+.links:hover {
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+  transform: scale(1.1);
 }

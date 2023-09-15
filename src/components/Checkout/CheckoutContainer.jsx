@@ -1,32 +1,42 @@
 import Checkout from "./Checkout";
 import { useContext, useState } from "react";
 import CartContext from "../../context/CartContext";
+import { PaymentMethods } from "../../assets/elementosNavbar";
 
 function CheckoutContainer() {
   const { cart } = useContext(CartContext);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  const [selectedOption, setSelectedOption] = useState(1);
+  const [formState, setFormState] = useState({
+    name: "",
+    email: "",
+    phone: "",
+  });
 
-  const handleChangeName = (event) => {
-    setName(event.target.value);
+  const { name, email, phone } = formState;
+
+  const onChange = (event) => {
+    setFormState({
+      ...formState,
+      [event.target.name]: event.target.value,
+    });
   };
-  const handleChangeEmail = (event) => {
-    setEmail(event.target.value);
+
+  const handleCheckboxChange = (event) => {
+    setSelectedOption(event.target.value);
   };
-  const handleChangePhone = (event) => {
-    setPhone(event.target.value);
-  };
+
+  console.log(selectedOption);
 
   return (
     <Checkout
       name={name}
       email={email}
       phone={phone}
-      handleChangeName={handleChangeName}
-      handleChangeEmail={handleChangeEmail}
-      handleChangePhone={handleChangePhone}
+      handleChange={onChange}
       productsInCart={cart}
+      paymentMethods={PaymentMethods}
+      checked={selectedOption}
+      handleCheckboxChange={handleCheckboxChange}
     />
   );
 }

@@ -3,11 +3,11 @@ import CartWignet from "./CartWidget";
 import CartContext from "../../context/CartContext";
 
 const CartWidgetContainer = () => {
-  const { cart, sumarQuantity } = useContext(CartContext);
+  const { cart, getCartQuantity } = useContext(CartContext);
   const [quantityInCart, setQuantityInCart] = useState(null);
 
   useEffect(() => {
-    setQuantityInCart(sumarQuantity);
+    setQuantityInCart(getCartQuantity);
   }, [cart]);
 
   return <CartWignet quantityInCart={quantityInCart} />;

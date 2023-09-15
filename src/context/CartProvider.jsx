@@ -4,7 +4,12 @@ import CartContext from "./CartContext";
 const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
-  const importeEnvio = 80000;
+  const isInCart = (id) => {
+    const itemInCart = cart.find((item) => item.id === id);
+    return !!itemInCart;
+  };
+
+  const amountShipping = 80000;
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("historyCart")) || [];
@@ -18,11 +23,11 @@ const CartProvider = ({ children }) => {
   }, [cart]);
 
   //Funcion de ItemCount
-  const addItem = (id, name, quantity, price) => {
-    const itemInCart = cart.find((item) => item.id === id);
+  const addItem = (product, quantity) => {
+    const itemInCart = isInCart(product.id);
     if (itemInCart) {
       const newCart = cart.map((item) => {
-        if (item.id === id) {
+        if (item.id === product.id) {
           return {
             ...item,
             quantity: item.quantity + quantity,
@@ -32,16 +37,16 @@ const CartProvider = ({ children }) => {
       });
       setCart(newCart);
     } else {
-      setCart([...cart, { id, name, quantity, price }]);
+      setCart([...cart, { ...product, quantity }]);
     }
   };
 
   //Funciones de Cart
 
   const increaseQuantity = (productId) => {
-    setCart((prevCart) => {
-      return prevCart.map((item) => {
-        if (item.id === productId) {
+    setCart((newCart) => {
+      return newCart.map((item) => {
+        if (item.id === productId && item.quantity < item.stock) {
           return {
             ...item,
             quantity: (item.quantity || 0) + 1,
@@ -53,8 +58,8 @@ const CartProvider = ({ children }) => {
   };
 
   const decreaseQuantity = (productId) => {
-    setCart((prevCart) => {
-      return prevCart.map((item) => {
+    setCart((newCart) => {
+      return newCart.map((item) => {
         if (item.id === productId) {
           const newQuantity = item.quantity > 1 ? item.quantity - 1 : 1;
           return {
@@ -68,66 +73,67 @@ const CartProvider = ({ children }) => {
   };
 
   const removeItem = (productId) => {
-    const prevCart = cart.filter((item) => item.id !== productId);
-    if (prevCart.length === 0) {
+    const newCart = cart.filter((item) => item.id !== productId);
+    if (newCart.length === 0) {
       localStorage.removeItem("historyCart");
     }
-    setCart(prevCart);
+    setCart(newCart);
   };
 
-  const clear = () => {
+  const clearCart = () => {
     setCart([]);
   };
 
-  const sumarQuantity = () => {
-    const suma = cart.reduce((acumulador, objeto) => {
-      if (objeto.hasOwnProperty("quantity")) {
-        return acumulador + objeto.quantity;
+  const getCartQuantity = () => {
+    const totalQuantity = cart.reduce((acc, item) => {
+      if (item.hasOwnProperty("quantity")) {
+        return acc + item.quantity;
       }
-      return acumulador;
+      return acc;
     }, 0);
-    return suma;
+    return totalQuantity;
   };
 
-  const sumarPrice = () => {
-    const suma = cart.reduce((acumulador, objeto) => {
-      if (objeto.hasOwnProperty("quantity") && objeto.hasOwnProperty("price")) {
-        return acumulador + objeto.quantity * parseFloat(objeto.price) * 1000;
+  const getTotalPrice = () => {
+    const totalPrice = cart.reduce((acc, item) => {
+      if (item.hasOwnProperty("quantity") && item.hasOwnProperty("price")) {
+        return acc + item.quantity * parseFloat(item.price) * 1000;
       }
-      return acumulador;
+      return acc;
     }, 0);
-    return suma;
+    return totalPrice;
   };
 
-  const envio = () => {
-    if (sumarPrice() > importeEnvio) {
+  const shippingCost = () => {
+    if (getTotalPrice() > amountShipping) {
       return "Gratis";
     } else {
       return 1500;
     }
   };
 
-  const sumarTotal = () => {
-    if (typeof envio() === "number") {
-      return sumarPrice() + envio();
+  const getTotalCount = () => {
+    if (typeof shippingCost() === "number") {
+      return getTotalPrice() + shippingCost();
     }
-    return sumarPrice();
+    return getTotalPrice();
   };
 
   return (
     <CartContext.Provider
       value={{
         cart,
-        importeEnvio,
+        amountShipping,
+        isInCart,
         addItem,
         increaseQuantity,
         decreaseQuantity,
         removeItem,
-        clear,
-        sumarQuantity,
-        sumarPrice,
-        envio,
-        sumarTotal,
+        clearCart,
+        getCartQuantity,
+        getTotalPrice,
+        shippingCost,
+        getTotalCount,
       }}
     >
       {children}

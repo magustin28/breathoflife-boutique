@@ -1,6 +1,6 @@
 import ItemCountContainer from "../ItemCount/ItemCountContainer";
 import ButtonBack from "./ButtonBack";
-import { toUpperCaseFirstLetter } from "../../assets/funciones";
+import { toUpperCaseFirstLetter } from "../../assets/utils";
 import propTypes from "prop-types";
 import style from "./ItemDetail.module.css";
 

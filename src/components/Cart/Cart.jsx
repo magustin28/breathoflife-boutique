@@ -1,12 +1,13 @@
 import PropTypes from "prop-types";
-import { formatoPesos } from "../../assets/funciones";
+import { formatCurrency } from "../../assets/utils";
 import { useContext } from "react";
 import style from "./Cart.module.css";
 import CartContext from "../../context/CartContext";
 import { Link } from "react-router-dom";
 
 function Cart({ productsInCart }) {
-  const { cart, increaseQuantity, decreaseQuantity, removeItem, clear, sumarQuantity, sumarPrice, envio, sumarTotal } = useContext(CartContext);
+  const { cart, increaseQuantity, decreaseQuantity, removeItem, clearCart, getCartQuantity, getTotalPrice, shippingCost, getTotalCount } =
+    useContext(CartContext);
 
   return (
     <div className="d-flex justify-content-center mt-5">
@@ -25,7 +26,7 @@ function Cart({ productsInCart }) {
         <div className={`col-7 me-4 border-start border-top border-end rounded border-dark-subtle ${style.bgcart}`}>
           <div className="border-bottom border-dark-subtle d-flex justify-content-between align-items-center">
             <p className="ms-4 mt-3 fw-semibold">Productos</p>
-            <p className={`mb-0 me-3 ${style.removeItem}`} onClick={clear}>
+            <p className={`mb-0 me-3 ${style.removeItem}`} onClick={clearCart}>
               Vaciar Carrito
             </p>
           </div>
@@ -40,12 +41,13 @@ function Cart({ productsInCart }) {
                       <p className="mb-0">{product.quantity}</p>
                       <i className="bi bi-plus text-primary fs-4" onClick={() => increaseQuantity(product.id)}></i>
                     </div>
-                    <p className="col-3 mb-0 text-end">{formatoPesos(parseFloat(product.price) * 1000 * product.quantity)}</p>
+                    <p className="col-3 mb-0 text-end">{formatCurrency(parseFloat(product.price) * 1000 * product.quantity)}</p>
                   </div>
                   <div className="d-flex justify-content-start mb-2">
-                    <p className={`mb-0 ${style.removeItem}`} onClick={() => removeItem(product.id)}>
+                    <p className={`col-6 mb-0 ${style.removeItem}`} onClick={() => removeItem(product.id)}>
                       Eliminar
                     </p>
+                    <p className="ms-5 mb-0 text center">{product.stock} disponibles </p>
                   </div>
                 </div>
               </div>
@@ -64,18 +66,18 @@ function Cart({ productsInCart }) {
               <p className="ms-4 mt-3 fw-semibold">Resumen de compra</p>
             </div>
             <div className="d-flex justify-content-between mt-1">
-              <p className="ms-4 mt-3 mb-0">Productos ({sumarQuantity()})</p>
-              <p className="me-4 mt-3 mb-0">{formatoPesos(sumarPrice())}</p>
+              <p className="ms-4 mt-3 mb-0">Productos ({getCartQuantity()})</p>
+              <p className="me-4 mt-3 mb-0">{formatCurrency(getTotalPrice())}</p>
             </div>
             <div className="d-flex justify-content-between mt-1">
               <p className="ms-4 mb-0">Envío</p>
-              <p className={`me-4 mb-0 ${typeof envio() !== "number" ? `${style.envio} fw-semibold` : ""}`}>
-                {typeof envio() === "number" ? formatoPesos(envio()) : envio()}
+              <p className={`me-4 mb-0 ${typeof shippingCost() !== "number" ? `${style.envio} fw-semibold` : ""}`}>
+                {typeof shippingCost() === "number" ? formatCurrency(shippingCost()) : shippingCost()}
               </p>
             </div>
             <div className="d-flex justify-content-between mt-4">
               <p className="ms-4 mb-0 fs-5 fw-bolder">Total</p>
-              <p className="me-4 mb-0 fs-5 fw-bolder">{formatoPesos(sumarTotal())}</p>
+              <p className="me-4 mb-0 fs-5 fw-bolder">{formatCurrency(getTotalCount())}</p>
             </div>
             <div className="text-center mt-4">
               <Link className="px-5 py-2 btn btn-primary" to={"/e-commerce-yoga/checkout"}>

@@ -6,3 +6,9 @@ export const ElementosNavbar = [
   { id: 5, title: "Ropa", category: "ropa" },
   { id: 6, title: "Contacto", page: "contact" },
 ];
+
+export const PaymentMethods = [
+  { id: 1, method: "Efectivo" },
+  { id: 2, method: "Transferencia" },
+  { id: 3, method: "MercadoPago" },
+];

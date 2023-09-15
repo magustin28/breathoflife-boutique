@@ -36,7 +36,7 @@ const ItemCountContainer = ({ stock, isInStock, item }) => {
   };
 
   const agregarAlCarrito = () => {
-    addItem(item.id, item.name, quantity, item.price);
+    addItem(item, quantity);
     notification();
   };
 

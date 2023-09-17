@@ -2,15 +2,15 @@ import PropTypes from "prop-types";
 import { useContext } from "react";
 import CartContext from "../../context/CartContext";
 import { formatCurrency } from "../../assets/utils";
-import style from "../Cart/Cart.module.css";
+import style from "./Checkout.module.css";
 
-function Checkout({ name, email, phone, handleChange, productsInCart, paymentMethods, selectedOption, handleRadioChange, buy }) {
+function Checkout({ name, email, phone, handleChange, productsInCart, paymentMethods, selectedOption, handleRadioChange, buy, isFormComplete }) {
   const { getCartQuantity, getTotalPrice, shippingCost, getTotalCount } = useContext(CartContext);
 
   return (
     <div className="d-flex justify-content-center mt-5 mx-2 gap-4">
       <div className="col-10 ">
-        <div className={`border rounded border-dark-subtle fs-5 pb-4 ${style.bgcart}`}>
+        <div className={`border rounded border-dark-subtle fs-5 pb-4 ${style.bgcheckout}`}>
           <div className="border-bottom border-dark-subtle">
             <p className="ms-4 mt-3 fw-semibold fs-5">Datos de contacto</p>
           </div>
@@ -37,7 +37,7 @@ function Checkout({ name, email, phone, handleChange, productsInCart, paymentMet
           </div>
         </div>
         <div className="d-flex justify-content-between mt-3 gap-3">
-          <div className={`flex-grow-1 border rounded border-dark-subtle fs-5 ${style.bgcart}`}>
+          <div className={`flex-grow-1 border rounded border-dark-subtle fs-5 ${style.bgcheckout}`}>
             <div className="border-bottom border-dark-subtle">
               <p className="ms-4 mt-3 fw-semibold fs-5">Detalle de productos</p>
             </div>
@@ -59,7 +59,7 @@ function Checkout({ name, email, phone, handleChange, productsInCart, paymentMet
               ) : null}
             </div>
           </div>
-          <div className={`col-4 border rounded border-dark-subtle pb-4 ${style.bgcart}`}>
+          <div className={`col-4 border rounded border-dark-subtle pb-4 ${style.bgcheckout}`}>
             <div className="border-bottom border-dark-subtle">
               <p className="ms-4 mt-3 fw-semibold fs-5">Resumen de compra</p>
             </div>
@@ -69,7 +69,7 @@ function Checkout({ name, email, phone, handleChange, productsInCart, paymentMet
             </div>
             <div className="d-flex justify-content-between mt-1">
               <p className="ms-4 mb-0">Envío</p>
-              <p className={`me-4 mb-0 ${typeof shippingCost() !== "number" ? `${style.envio} fw-semibold` : ""}`}>
+              <p className={`me-4 mb-0 ${typeof shippingCost() !== "number" ? `${style.ship} fw-semibold` : ""}`}>
                 {typeof shippingCost() === "number" ? formatCurrency(shippingCost()) : shippingCost()}
               </p>
             </div>
@@ -79,29 +79,27 @@ function Checkout({ name, email, phone, handleChange, productsInCart, paymentMet
             </div>
           </div>
         </div>
-        <div className={`d-flex justify-content-between align-items-center mt-3 border rounded border-dark-subtle ${style.bgcart}`}>
+        <div className={`d-flex justify-content-between align-items-center mt-3 py-2 border rounded border-dark-subtle ${style.bgcheckout}`}>
           <div className="flex-grow-1 d-flex me-5 justify-content-between align-items-center">
             <p className="mb-0 ms-4 fw-semibold fs-5">Formas de Pago</p>
-            {paymentMethods.map((method) => (
-              <div key={method.id} className="my-3">
-                <label className="d-flex gap-2">
-                  <input
-                    className=""
-                    type="radio"
-                    id={method.id}
-                    name="opciones"
-                    value={method.id}
-                    checked={selectedOption === method.id}
-                    onChange={handleRadioChange}
-                  />
-                  {method.method}
-                </label>
-              </div>
-            ))}
+            <div className="col-7 d-flex justify-content-between gap-2">
+              {paymentMethods.map((paymentMethod) => (
+                <div key={paymentMethod.id}>
+                  <label className="d-flex gap-2">
+                    <input type="radio" value={paymentMethod.method} checked={selectedOption === paymentMethod.method} onChange={handleRadioChange} />
+                    {paymentMethod.method}
+                  </label>
+                </div>
+              ))}
+            </div>
           </div>
-          <p className="col-3 mb-0 me-4 py-2 btn btn-primary" onClick={buy}>
+          <button
+            className={`col-3 mb-0 me-4 py-2 ${isFormComplete ? `btn btn-primary` : `btn btn-secondary`}`}
+            onClick={buy}
+            disabled={!isFormComplete}
+          >
             Comprar
-          </p>
+          </button>
         </div>
       </div>
     </div>
@@ -115,8 +113,10 @@ Checkout.propTypes = {
   handleChange: PropTypes.func.isRequired,
   productsInCart: PropTypes.array.isRequired,
   paymentMethods: PropTypes.array.isRequired,
-  selectedOption: PropTypes.number,
+  selectedOption: PropTypes.string,
   handleRadioChange: PropTypes.func,
+  buy: PropTypes.func,
+  isFormComplete: PropTypes.bool,
 };
 
 export default Checkout;

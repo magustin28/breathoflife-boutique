@@ -1,11 +1,14 @@
-import Checkout from "./Checkout";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import CartContext from "../../context/CartContext";
-import { PaymentMethods } from "../../assets/elementosNavbar";
+import Checkout from "./Checkout";
+import { PaymentMethods } from "../../assets/firebase";
 
 function CheckoutContainer() {
-  const { cart } = useContext(CartContext);
-  const [selectedOption, setSelectedOption] = useState(1);
+  const { cart, updateBuyerAndPaymentMethods } = useContext(CartContext);
+  const navigate = useNavigate();
+  const [selectedOption, setSelectedOption] = useState("");
+  const [isFormComplete, setFormComplete] = useState(false);
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -21,11 +24,30 @@ function CheckoutContainer() {
     });
   };
 
-  const handleCheckboxChange = (event) => {
+  const handleRadioChange = (event) => {
     setSelectedOption(event.target.value);
   };
 
-  console.log(selectedOption);
+  const validarEmail = (email) => email.includes("@") && email.includes(".com");
+  const validarPhone = (phone) => {
+    phone = phone.replace(/\s+/g, "").replace(/-/g, "");
+    return /^\d{10,}$/.test(phone);
+  };
+
+  useEffect(() => {
+    const isDataComplete = name && validarEmail(email) && validarPhone(phone) && selectedOption;
+    setFormComplete(isDataComplete);
+  }, [name, email, phone, selectedOption]);
+
+  const handleCheckout = () => {
+    const buyer = {
+      name: name,
+      email: email,
+      phone: phone,
+    };
+    updateBuyerAndPaymentMethods(buyer, selectedOption);
+    navigate("/e-commerce-yoga/order");
+  };
 
   return (
     <Checkout
@@ -35,8 +57,10 @@ function CheckoutContainer() {
       handleChange={onChange}
       productsInCart={cart}
       paymentMethods={PaymentMethods}
-      checked={selectedOption}
-      handleCheckboxChange={handleCheckboxChange}
+      selectedOption={selectedOption}
+      handleRadioChange={handleRadioChange}
+      buy={handleCheckout}
+      isFormComplete={isFormComplete}
     />
   );
 }

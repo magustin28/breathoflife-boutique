@@ -1,18 +1,18 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getItems } from "../../assets/productos";
+import { getItems } from "../../assets/services";
 import ItemList from "./ItemList";
 
 const ItemListContainer = () => {
   const [items, setItems] = useState([]);
-  const [isLoading, setisLoanding] = useState(true);
+  const [isLoading, setisLoading] = useState(true);
   const { id } = useParams();
 
   useEffect(() => {
-    setisLoanding(true);
+    setisLoading(true);
     getItems(id).then((response) => {
       setItems(response);
-      setisLoanding(false);
+      setisLoading(false);
     });
   }, [id]);
 

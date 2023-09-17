@@ -1,4 +1,19 @@
-const products = [
+export const ElementosNavbar = [
+  { id: 1, title: "Home", page: "" },
+  { id: 2, title: "Nosotros", page: "about" },
+  { id: 3, title: "Mat", category: "mat" },
+  { id: 4, title: "Accesorios", category: "accesorio" },
+  { id: 5, title: "Ropa", category: "ropa" },
+  { id: 6, title: "Contacto", page: "contact" },
+];
+
+export const PaymentMethods = [
+  { id: 1, method: "Efectivo" },
+  { id: 2, method: "Transferencia" },
+  { id: 3, method: "MercadoPago" },
+];
+
+export const products = [
   {
     id: "1",
     img: "http://drive.google.com/uc?export=view&id=1LbtViC0hGjD-t_mWeU4W64DlDFE_c5Id",
@@ -118,25 +133,3 @@ const products = [
     stock: 3,
   },
 ];
-
-export const getItem = (id) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const product = products.find((p) => p.id === id);
-      if (product) {
-        resolve(product);
-      } else {
-        reject("Producto no encontrado");
-      }
-    });
-  });
-};
-
-export const getItems = (category) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const filtroProductos = category ? products.filter((product) => product.category === category) : products;
-      resolve(filtroProductos);
-    });
-  });
-};

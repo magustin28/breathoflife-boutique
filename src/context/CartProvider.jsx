@@ -3,13 +3,21 @@ import CartContext from "./CartContext";
 
 const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+  const [order, setOrder] = useState({
+    buyer: null,
+    items: [],
+    total: 0,
+    paymentMethods: null,
+    date: null,
+    id: null,
+  });
+
+  const amountShipping = 80000;
 
   const isInCart = (id) => {
     const itemInCart = cart.find((item) => item.id === id);
     return !!itemInCart;
   };
-
-  const amountShipping = 80000;
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("historyCart")) || [];
@@ -21,6 +29,10 @@ const CartProvider = ({ children }) => {
       localStorage.setItem("historyCart", JSON.stringify(cart));
     }
   }, [cart]);
+
+  useEffect(() => {
+    localStorage.setItem("historyOrder", JSON.stringify(order));
+  }, [order]);
 
   //Funcion de ItemCount
   const addItem = (product, quantity) => {
@@ -42,7 +54,6 @@ const CartProvider = ({ children }) => {
   };
 
   //Funciones de Cart
-
   const increaseQuantity = (productId) => {
     setCart((newCart) => {
       return newCart.map((item) => {
@@ -119,10 +130,43 @@ const CartProvider = ({ children }) => {
     return getTotalPrice();
   };
 
+  //Funciones de Checkout
+  const mapCartToOrderItems = () => {
+    return cart.map((item) => ({
+      id: item.id,
+      name: item.name,
+      quantity: item.quantity,
+      price: item.price,
+    }));
+  };
+
+  const updateBuyerAndPaymentMethods = (buyer, paymentMethods) => {
+    setOrder((prevOrder) => ({
+      ...prevOrder,
+      buyer: buyer,
+      paymentMethods: paymentMethods,
+    }));
+  };
+
+  const updateOrder = (id, date) => {
+    setOrder((prevOrder) => ({
+      ...prevOrder,
+      items: mapCartToOrderItems(),
+      total: getTotalCount(),
+      id: id,
+      date: date,
+    }));
+  };
+
+  const clearOrder = () => {
+    setOrder([]);
+  };
+
   return (
     <CartContext.Provider
       value={{
         cart,
+        order,
         amountShipping,
         isInCart,
         addItem,
@@ -134,6 +178,9 @@ const CartProvider = ({ children }) => {
         getTotalPrice,
         shippingCost,
         getTotalCount,
+        updateBuyerAndPaymentMethods,
+        updateOrder,
+        clearOrder,
       }}
     >
       {children}

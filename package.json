@@ -13,6 +13,7 @@
     "gpages": "vite build && gh-pages -d dist"
   },
   "dependencies": {
+    "@react-pdf/renderer": "^3.1.12",
     "bootstrap": "^5.3.1",
     "bootstrap-icons": "^1.10.5",
     "prop-types": "^15.8.1",

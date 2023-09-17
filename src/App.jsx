@@ -5,6 +5,7 @@ import ItemListContainer from "./components/ItemList/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetail/ItemDetailContainer";
 import CartContainer from "./components/Cart/CartContainer";
 import CheckoutContainer from "./components/Checkout/CheckoutContainer";
+import OrderProcessingContainer from "./components/OrderProcessing/OrderProcessingContainer";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/e-commerce-yoga/contact" element={<Contact />} />
           <Route path="/e-commerce-yoga/cart" element={<CartContainer />} />
           <Route path="/e-commerce-yoga/checkout" element={<CheckoutContainer />} />
+          <Route path="/e-commerce-yoga/order" element={<OrderProcessingContainer />} />
         </Routes>
       </div>
     </CartProvider>

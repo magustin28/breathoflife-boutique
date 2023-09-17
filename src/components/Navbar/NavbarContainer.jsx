@@ -1,5 +1,5 @@
 import Navbar from "./NavBar";
-import { ElementosNavbar } from "../../assets/elementosNavbar";
+import { ElementosNavbar } from "../../assets/firebase";
 
 const NavbarContainer = () => {
   return (

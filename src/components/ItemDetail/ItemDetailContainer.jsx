@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { getItem } from "../../assets/productos";
+import { getItem } from "../../assets/services";
 import ItemDetail from "./ItemDetail";
 
 const ItemDetailContainer = () => {
   const [item, setItem] = useState(null);
-  const [isLoading, setisLoanding] = useState(true);
+  const [isLoading, setisLoading] = useState(true);
   const [stock, setStock] = useState(0);
   const [isInStock, setisInStock] = useState(true);
   const { id } = useParams();
@@ -25,7 +25,7 @@ const ItemDetailContainer = () => {
         setItem(null);
       })
       .finally(() => {
-        setisLoanding(false);
+        setisLoading(false);
       });
   }, [id]);
 

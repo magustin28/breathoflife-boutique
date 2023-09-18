@@ -21,7 +21,7 @@ const ItemList = ({ products, isLoading }) => {
                 <h5 className="card-title h-25 pb-3 fw-normal">{item.name}</h5>
                 <div className="d-flex justify-content-between align-items-center">
                   <p className="my-2 mx-4 fs-5 fw-bolder">${item.price}</p>
-                  <p className="my-2 mx-4 badge text-bg-success">{item.category}</p>
+                  <p className="my-2 mx-4 badge text-bg-success">{item.categoryId}</p>
                 </div>
                 <Link to={`/e-commerce-yoga/item/${item.id}`} className="btn btn-light">
                   Ver detalle

@@ -26,7 +26,7 @@ const ItemDetail = ({ item, isLoading, stock, isInStock, botonVolver }) => {
               <div className="mt-5 d-flex">
                 <ButtonBack botonVolver={botonVolver} />
                 <span className="mx-2">|</span>
-                <p>{toUpperCaseFirstLetter(item.category)}</p>
+                <p>{toUpperCaseFirstLetter(item.categoryId)}</p>
               </div>
               <div className={` p-3 ${style.item}`}>
                 <div className="row py-2 d-flex justify-content-evenly">
@@ -38,7 +38,7 @@ const ItemDetail = ({ item, isLoading, stock, isInStock, botonVolver }) => {
                     <div className="d-flex justify-content-evenly my-4">
                       <p className="mb-0 fs-4 fw-bolder">$ {item.price}</p>
                       <p className="mb-0">
-                        Categoria: <span className="my-2 mx-2 badge text-bg-success">{item.category}</span>
+                        Categoria: <span className="my-2 mx-2 badge text-bg-success">{item.categoryId}</span>
                       </p>
                     </div>
                     <p className="my-2">

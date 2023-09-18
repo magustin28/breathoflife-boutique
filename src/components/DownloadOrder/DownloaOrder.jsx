@@ -5,8 +5,8 @@ const styles = StyleSheet.create({
   page: {
     flexDirection: "column",
     paddingTop: 50,
-    paddingLeft: 50,
-    paddingRight: 50,
+    paddingLeft: 45,
+    paddingRight: 45,
   },
   header: {
     marginBottom: 20,
@@ -71,7 +71,9 @@ function DownloaOrder({ order }) {
           <Text style={styles.dataBuyer}>Email: {order?.buyer?.email}</Text>
           <Text style={styles.dataBuyer}>Teléfono: {order?.buyer?.phone}</Text>
           <Text style={styles.dataBuyer}>Forma de pago: {order.paymentMethods}</Text>
-          <Text style={styles.dataBuyer}>Envío: {typeof order.envio !== "number" ? order.envio : formatCurrency(order.envio)}</Text>
+          <Text style={styles.dataBuyer}>
+            Envío: {typeof order.shippingCost !== "number" ? order.shippingCost : formatCurrency(order.shippingCost)}
+          </Text>
         </View>
         <View style={styles.sectionItems}>
           <Text style={styles.titleItems}>Detalle de la compra:</Text>

@@ -18,7 +18,7 @@ function App() {
 
         <Routes>
           <Route path="/e-commerce-yoga/" element={<ItemListContainer />} />
-          <Route path="/e-commerce-yoga/category/:id" element={<ItemListContainer />} />
+          <Route path="/e-commerce-yoga/categoryId/:id" element={<ItemListContainer />} />
           <Route path="/e-commerce-yoga/item/:id" element={<ItemDetailContainer />} />
           <Route path="/e-commerce-yoga/about" element={<About />} />
           <Route path="/e-commerce-yoga/contact" element={<Contact />} />

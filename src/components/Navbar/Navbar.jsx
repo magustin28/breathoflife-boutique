@@ -17,7 +17,7 @@ const Navbar = ({ title }) => {
             <li key={elementos.id} className="nav-item me-2">
               <NavLink
                 className={`nav-link ${styles.links}`}
-                to={`/e-commerce-yoga/${elementos.category === undefined ? elementos.page : `category/${elementos.category}`}`}
+                to={`/e-commerce-yoga/${elementos.categoryId === "" ? elementos.page : `categoryId/${elementos.categoryId}`}`}
               >
                 {elementos.title}
               </NavLink>

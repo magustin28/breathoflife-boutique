@@ -6,10 +6,9 @@ const CartProvider = ({ children }) => {
   const [order, setOrder] = useState({
     buyer: null,
     items: [],
+    shippingCost: null,
     total: 0,
     paymentMethods: null,
-    date: null,
-    id: null,
   });
 
   const amountShipping = 80000;
@@ -29,10 +28,6 @@ const CartProvider = ({ children }) => {
       localStorage.setItem("historyCart", JSON.stringify(cart));
     }
   }, [cart]);
-
-  useEffect(() => {
-    localStorage.setItem("historyOrder", JSON.stringify(order));
-  }, [order]);
 
   //Funcion de ItemCount
   const addItem = (product, quantity) => {
@@ -140,26 +135,29 @@ const CartProvider = ({ children }) => {
     }));
   };
 
-  const updateBuyerAndPaymentMethods = (buyer, paymentMethods) => {
+  const updateOrder = (buyer, paymentMethods) => {
     setOrder((prevOrder) => ({
       ...prevOrder,
+      items: mapCartToOrderItems(),
+      shippingCost: shippingCost(),
+      total: getTotalCount(),
       buyer: buyer,
       paymentMethods: paymentMethods,
     }));
   };
 
-  const updateOrder = (id, date) => {
+  const updateOrderId = (id) => {
     setOrder((prevOrder) => ({
       ...prevOrder,
-      items: mapCartToOrderItems(),
-      total: getTotalCount(),
       id: id,
-      date: date,
     }));
   };
 
-  const clearOrder = () => {
-    setOrder([]);
+  const updateOrderDate = (date) => {
+    setOrder((prevOrder) => ({
+      ...prevOrder,
+      date: date,
+    }));
   };
 
   return (
@@ -178,9 +176,9 @@ const CartProvider = ({ children }) => {
         getTotalPrice,
         shippingCost,
         getTotalCount,
-        updateBuyerAndPaymentMethods,
         updateOrder,
-        clearOrder,
+        updateOrderId,
+        updateOrderDate,
       }}
     >
       {children}

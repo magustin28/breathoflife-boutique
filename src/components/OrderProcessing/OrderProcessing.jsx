@@ -16,12 +16,12 @@ function OrderProcessing({ order, isLoading }) {
         </div>
       ) : (
         <div className="mt-5 d-flex justify-content-center">
-          <div>
-            <p className={`fs-4 mb-0 p-2 border rounded border-dark-subtle ${style.bgorder}`}>Orden confirmada #{order.id}</p>
+          <div className={`${style.widthOrder}`}>
+            <p className={`fs-4 mb-0 p-2 text-center border rounded border-dark-subtle ${style.bgOrder}`}>Orden confirmada #{order.id}</p>
             <div className="my-4">
               <div className="mb-3 d-flex justify-content-between">
                 <p className="mb-0 fw-semibold text-decoration-underline">Datos del comprador</p>
-                <p className="mb-0">Fecha de Compra: {order.date ? order.date.toLocaleDateString() : "Fecha no disponible"}</p>
+                <p className="mb-0">Fecha de Compra: {order.date ? order.date.toLocaleDateString() : "No disponible"}</p>
               </div>
               <div className="mb-3 d-flex">
                 <p className="mb-0 col-3 fw-medium">Comprador:</p>
@@ -41,7 +41,9 @@ function OrderProcessing({ order, isLoading }) {
               </div>
               <div className="mb-3 d-flex">
                 <p className="mb-0 col-3 fw-medium">Envio:</p>
-                <p className={`mb-0 ${typeof order.envio !== "number" ? `${style.ship} fw-semibold` : ""}`}>{formatCurrency(order.envio)}</p>
+                <p className={`mb-0 ${typeof order.shippingCost !== "number" ? `${style.ship} fw-semibold` : ""}`}>
+                  {formatCurrency(order.shippingCost)}
+                </p>
               </div>
             </div>
             <div className="my-4">
@@ -61,7 +63,7 @@ function OrderProcessing({ order, isLoading }) {
             </div>
             <div className="mt-4 d-flex justify-content-between align-items-center">
               <DownloaOrderContainer order={order} />
-              <CountdownRedirect seconds={10} to="/e-commerce-yoga/" />
+              <CountdownRedirect seconds={15} to="/e-commerce-yoga/" />
             </div>
           </div>
         </div>

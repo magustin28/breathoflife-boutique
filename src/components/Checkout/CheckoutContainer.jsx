@@ -5,7 +5,7 @@ import Checkout from "./Checkout";
 import { PaymentMethods } from "../../assets/firebase";
 
 function CheckoutContainer() {
-  const { cart, updateBuyerAndPaymentMethods } = useContext(CartContext);
+  const { cart, updateOrder } = useContext(CartContext);
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState("");
   const [isFormComplete, setFormComplete] = useState(false);
@@ -29,14 +29,19 @@ function CheckoutContainer() {
   };
 
   const validarEmail = (email) => email.includes("@") && email.includes(".com");
+
   const validarPhone = (phone) => {
     phone = phone.replace(/\s+/g, "").replace(/-/g, "");
     return /^\d{10,}$/.test(phone);
   };
 
   useEffect(() => {
-    const isDataComplete = name && validarEmail(email) && validarPhone(phone) && selectedOption;
-    setFormComplete(isDataComplete);
+    const isDataComplete =
+      name && validarEmail(email) && validarPhone(phone) && selectedOption !== null && selectedOption !== undefined && selectedOption !== "";
+
+    if (isDataComplete) {
+      setFormComplete(true);
+    }
   }, [name, email, phone, selectedOption]);
 
   const handleCheckout = () => {
@@ -45,7 +50,7 @@ function CheckoutContainer() {
       email: email,
       phone: phone,
     };
-    updateBuyerAndPaymentMethods(buyer, selectedOption);
+    updateOrder(buyer, selectedOption);
     navigate("/e-commerce-yoga/order");
   };
 

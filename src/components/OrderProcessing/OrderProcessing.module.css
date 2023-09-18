@@ -1,6 +1,11 @@
 /* ESTILOS PARTICULARES */
 /* estilos -> Order */
-.bgorder {
+
+.widthOrder {
+  width: 45%;
+}
+
+.bgOrder {
   background-color: #e0cda9;
 }
 

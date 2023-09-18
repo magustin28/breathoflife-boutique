@@ -1,5 +1,5 @@
 import { products } from "./firebase";
-import { generateSimpleId } from "./utils";
+import { doc, getDoc, collection, addDoc, getFirestore } from "firebase/firestore";
 
 export const getItem = (id) => {
   return new Promise((resolve, reject) => {
@@ -14,24 +14,37 @@ export const getItem = (id) => {
   });
 };
 
-export const getItems = (category) => {
+export const getItems = (categoryId) => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      const filtroProductos = category ? products.filter((product) => product.category === category) : products;
+      const filtroProductos = categoryId ? products.filter((product) => product.categoryId === categoryId) : products;
       resolve(filtroProductos);
     });
   });
 };
 
-export const getOrderNumber = () => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const orderNumber = generateSimpleId();
-      resolve(orderNumber);
-    }, 3000);
-  });
+export const createOrder = (order) => {
+  const db = getFirestore();
+  const ordersCollection = collection(db, "orders");
+  return addDoc(ordersCollection, order);
 };
 
-const createOrder = (orden) => {
-  localStorage.setItem("historyOrders", JSON.stringify(orden));
+export const getDateOfOrder = (docRef) => {
+  const db = getFirestore();
+  const orderDocRef = doc(db, "orders", docRef);
+  return new Promise((resolve, reject) => {
+    getDoc(orderDocRef)
+      .then((docSnapshot) => {
+        if (docSnapshot.exists()) {
+          const orderData = docSnapshot.data();
+          const timestamp = orderData.date;
+          const date = timestamp.toDate();
+          resolve(date);
+        }
+      })
+      .catch((error) => {
+        console.error("Error al obtener la orden:", error);
+        reject(error);
+      });
+  });
 };

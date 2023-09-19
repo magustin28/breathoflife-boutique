@@ -103,7 +103,7 @@ const CartProvider = ({ children }) => {
   const getTotalPrice = () => {
     const totalPrice = cart.reduce((acc, item) => {
       if (item.hasOwnProperty("quantity") && item.hasOwnProperty("price")) {
-        return acc + item.quantity * parseFloat(item.price) * 1000;
+        return acc + item.quantity * item.price;
       }
       return acc;
     }, 0);

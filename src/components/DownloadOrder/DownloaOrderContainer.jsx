@@ -5,7 +5,7 @@ import { PDFDownloadLink } from "@react-pdf/renderer";
 function DownloaOrderContainer({ order }) {
   return (
     <div>
-      <PDFDownloadLink document={<DownloaOrder order={order} />} fileName={`order${order.id}.pdf`}>
+      <PDFDownloadLink document={<DownloaOrder order={order} />} fileName={`order_${order.id}.pdf`}>
         <button className="btn btn-success">Descargar Orden</button>
       </PDFDownloadLink>
     </div>

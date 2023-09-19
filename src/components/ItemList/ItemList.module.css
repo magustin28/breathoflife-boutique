@@ -13,3 +13,15 @@
 .bgcard {
   background-color: #e0cda9;
 }
+
+/* estilos -> Imagen */
+.productImage {
+  max-height: 20rem;
+}
+
+/* estilos -> Imagen Legging */
+.productImageLegging {
+  width: auto;
+  display: block;
+  margin: 0 auto;
+}

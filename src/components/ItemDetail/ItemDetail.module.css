@@ -18,5 +18,13 @@
 
 /* estilos -> Imagen */
 .imageItem {
-  width: 32rem;
+  width: 30rem;
+}
+
+/* estilos -> Imagen Legging */
+.imageItemLegging {
+  max-height: 33rem;
+  width: auto;
+  display: block;
+  margin: 0 auto;
 }

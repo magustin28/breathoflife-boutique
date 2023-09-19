@@ -1,4 +1,5 @@
 import propTypes from "prop-types";
+import { formatCurrency, formatCurrencyWithoutDecimal } from "../../assets/utils";
 import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
 
 const styles = StyleSheet.create({
@@ -53,8 +54,6 @@ const styles = StyleSheet.create({
   },
 });
 
-export const formatCurrency = (value) => value.toLocaleString("es-AR", { style: "currency", currency: "ARS" });
-
 function DownloaOrder({ order }) {
   return (
     <Document>
@@ -79,7 +78,8 @@ function DownloaOrder({ order }) {
           <Text style={styles.titleItems}>Detalle de la compra:</Text>
           {order.items.map((product) => (
             <Text key={product.id} style={styles.item}>
-              ~ {product.name} (c/u ${product.price}) X {product.quantity} unidades
+              ~ {product.name} (c/u {formatCurrencyWithoutDecimal(product.price)}) X {product.quantity}{" "}
+              {product.quantity === 1 ? `unidad` : `unidades`}
             </Text>
           ))}
         </View>

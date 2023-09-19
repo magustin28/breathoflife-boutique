@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { formatCurrency } from "../../assets/utils";
+import { formatCurrency, formatCurrencyWithoutDecimal } from "../../assets/utils";
 import { useContext } from "react";
 import style from "./Cart.module.css";
 import CartContext from "../../context/CartContext";
@@ -35,13 +35,15 @@ function Cart({ productsInCart }) {
               <div key={product.id} className="border-bottom border-dark-subtle">
                 <div className="d-flex flex-column mx-3">
                   <div className="d-flex justify-content-between align-items-center">
-                    <p className="col-6 mb-0 text-start">{product.name}</p>
+                    <p className="col-6 mb-0 text-start">
+                      {product.name} ~ (c/u {formatCurrencyWithoutDecimal(product.price)})
+                    </p>
                     <div className="d-flex justify-content-around align-items-center border border-secondary-subtle rounded bg-light my-3 col-2">
                       <i className="bi bi-dash text-primary fs-4" onClick={() => decreaseQuantity(product.id)}></i>
                       <p className="mb-0">{product.quantity}</p>
                       <i className="bi bi-plus text-primary fs-4" onClick={() => increaseQuantity(product.id)}></i>
                     </div>
-                    <p className="col-3 mb-0 text-end">{formatCurrency(parseFloat(product.price) * 1000 * product.quantity)}</p>
+                    <p className="col-3 mb-0 text-end">{formatCurrency(product.price * product.quantity)}</p>
                   </div>
                   <div className="d-flex justify-content-start mb-2">
                     <p className={`col-6 mb-0 ${style.removeItem}`} onClick={() => removeItem(product.id)}>

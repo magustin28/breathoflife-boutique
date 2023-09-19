@@ -1,5 +1,5 @@
 import propTypes from "prop-types";
-import { formatCurrency } from "../../assets/utils";
+import { formatCurrency, formatCurrencyWithoutDecimal } from "../../assets/utils";
 import style from "./OrderProcessing.module.css";
 import DownloaOrderContainer from "../DownloadOrder/DownloaOrderContainer";
 import CountdownRedirect from "./CountdownRedirect";
@@ -52,7 +52,8 @@ function OrderProcessing({ order, isLoading }) {
                 {order.items.map((product) => (
                   <li key={product.id} className="my-3">
                     <span className="me-2">{product.name}</span>
-                    <span className="me-2">(c/u ${product.price})</span> X {product.quantity} unidades
+                    <span className="me-2">(c/u {formatCurrencyWithoutDecimal(product.price)})</span> x {product.quantity}{" "}
+                    {product.quantity === 1 ? `unidad` : `unidades`}
                   </li>
                 ))}
               </ul>

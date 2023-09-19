@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useContext } from "react";
 import CartContext from "../../context/CartContext";
-import { formatCurrency } from "../../assets/utils";
+import { formatCurrency, formatCurrencyWithoutDecimal } from "../../assets/utils";
 import style from "./Checkout.module.css";
 
 function Checkout({ name, email, phone, handleChange, productsInCart, paymentMethods, selectedOption, handleRadioChange, buy, isFormComplete }) {
@@ -46,12 +46,12 @@ function Checkout({ name, email, phone, handleChange, productsInCart, paymentMet
                 <>
                   {productsInCart.map((product) => (
                     <div key={product.id} className="my-3">
-                      <div className="d-flex justify-content-between mx-4">
+                      <div className="mx-4 d-flex justify-content-between align-items-center">
                         <p className="col-7 mb-2 text-start">
-                          {product.name} <span className="mx-3"> x </span>
-                          {product.quantity}
+                          {product.name} (c/u {formatCurrencyWithoutDecimal(product.price)}) x {product.quantity}{" "}
+                          {product.quantity === 1 ? `unidad` : `unidades`}
                         </p>
-                        <p className="mb-2 text-end">{formatCurrency(parseFloat(product.price) * 1000 * product.quantity)}</p>
+                        <p className="mb-2 text-end">{formatCurrency(product.price * product.quantity)}</p>
                       </div>
                     </div>
                   ))}

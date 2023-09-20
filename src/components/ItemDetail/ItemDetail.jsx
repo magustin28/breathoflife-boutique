@@ -2,6 +2,7 @@ import propTypes from "prop-types";
 import ItemCountContainer from "../ItemCount/ItemCountContainer";
 import ButtonBack from "./ButtonBack";
 import { toUpperCaseFirstLetter, formatCurrencyWithoutDecimal } from "../../assets/utils";
+import imgProduct from "../../assets/img/importImages";
 import style from "./ItemDetail.module.css";
 
 const ItemDetail = ({ item, isLoading, stock, isInStock, botonVolver }) => {
@@ -33,7 +34,7 @@ const ItemDetail = ({ item, isLoading, stock, isInStock, botonVolver }) => {
                   <div className="col-6 d-flex justify-content-center">
                     <img
                       className={`img-fluid ${style.imageItem} ${item.img.includes("legging") ? `${style.imageItemLegging}` : ""}`}
-                      src={`/img/${item.img}`}
+                      src={imgProduct[item.img]}
                       alt={item.name}
                     />
                   </div>

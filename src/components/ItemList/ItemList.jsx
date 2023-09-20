@@ -2,6 +2,7 @@ import propTypes from "prop-types";
 import { Link } from "react-router-dom";
 import style from "./ItemList.module.css";
 import { formatCurrencyWithoutDecimal } from "../../assets/utils";
+import imgProduct from "../../assets/img/importImages";
 
 const ItemList = ({ products, isLoading }) => {
   return (
@@ -19,8 +20,8 @@ const ItemList = ({ products, isLoading }) => {
             <div key={item.id} className={`card col-3 m-3 shadow ${style.bgcard}`}>
               <img
                 className={`card-img-top mt-2 pt-2 ${style.productImage} ${item.img.includes("legging") ? `${style.productImageLegging}` : ""}`}
-                src={`/img/${item.img}`}
-                alt={item.img}
+                src={imgProduct[item.img]}
+                alt={item.name}
               />
               <div className="card-body d-flex flex-column justify-content-between">
                 <h5 className="card-title h-25 pb-3 fw-normal">{item.name}</h5>

@@ -2236,4 +2236,4 @@ Add a <Suspense fallback=...> component higher in the tree to provide a loading 
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */N1(tCe,rCe,"app");const nCe={apiKey:"AIzaSyBhc2j0Ce2j02_kFLBYMponceaTokSraqc",authDomain:"e-commerce-yoga.firebaseapp.com",projectId:"e-commerce-yoga",storageBucket:"e-commerce-yoga.appspot.com",messagingSenderId:"755112949187",appId:"1:755112949187:web:c9dadb690f0f5b383e3976"};XB(nCe);L_.createRoot(document.getElementById("root")).render(se.jsx(fn.StrictMode,{children:se.jsx(YX,{basename:"/e-commerce-yoga",children:se.jsx(eCe,{})})}));
+ */N1(tCe,rCe,"app");const nCe={apiKey:"AIzaSyBhc2j0Ce2j02_kFLBYMponceaTokSraqc",authDomain:"e-commerce-yoga.firebaseapp.com",projectId:"e-commerce-yoga",storageBucket:"e-commerce-yoga.appspot.com",messagingSenderId:"755112949187",appId:"1:755112949187:web:c9dadb690f0f5b383e3976"};XB(nCe);L_.createRoot(document.getElementById("root")).render(se.jsx(fn.StrictMode,{children:se.jsx(YX,{children:se.jsx(eCe,{})})}));

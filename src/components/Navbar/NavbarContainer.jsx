@@ -1,10 +1,19 @@
 import Navbar from "./NavBar";
-import { ElementosNavbar } from "../../assets/firebase";
+import { useEffect, useState } from "react";
+import { getNavbarElements } from "../../assets/services";
 
 const NavbarContainer = () => {
+  const [navbarElements, setNavbarElements] = useState([]);
+
+  useEffect(() => {
+    getNavbarElements().then((response) => {
+      setNavbarElements(response);
+    });
+  }, []);
+
   return (
     <>
-      <Navbar title={ElementosNavbar} />
+      <Navbar title={navbarElements} />
     </>
   );
 };

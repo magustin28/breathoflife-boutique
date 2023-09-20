@@ -1,5 +1,41 @@
 import { products } from "./firebase";
-import { doc, getDoc, collection, addDoc, getFirestore } from "firebase/firestore";
+import { doc, getDoc, collection, getDocs, addDoc, getFirestore } from "firebase/firestore";
+
+export const getNavbarElements = () => {
+  return new Promise((resolve, reject) => {
+    const db = getFirestore();
+    const navbarCollectionRef = collection(db, "elementosNavbar");
+
+    getDocs(navbarCollectionRef)
+      .then((querySnapshot) => {
+        const navbarElements = querySnapshot.docs.map((element) => {
+          return { id: element.id, ...element.data() };
+        });
+        resolve(navbarElements);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
+
+export const getPaymentMethods = () => {
+  return new Promise((resolve, reject) => {
+    const db = getFirestore();
+    const paymentMethodsCollectionRef = collection(db, "paymentMethods");
+
+    getDocs(paymentMethodsCollectionRef)
+      .then((querySnapshot) => {
+        const paymentMethods = querySnapshot.docs.map((methods) => {
+          return { id: methods.id, ...methods.data() };
+        });
+        resolve(paymentMethods);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
 
 export const getItem = (id) => {
   return new Promise((resolve, reject) => {

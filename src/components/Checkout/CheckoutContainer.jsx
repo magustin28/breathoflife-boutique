@@ -2,11 +2,12 @@ import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CartContext from "../../context/CartContext";
 import Checkout from "./Checkout";
-import { PaymentMethods } from "../../assets/firebase";
+import { getPaymentMethods } from "../../assets/services";
 
 function CheckoutContainer() {
   const { cart, updateOrder } = useContext(CartContext);
   const navigate = useNavigate();
+  const [paymentMethods, setPaymentMethods] = useState([]);
   const [selectedOption, setSelectedOption] = useState("");
   const [isFormComplete, setFormComplete] = useState(false);
   const [formState, setFormState] = useState({
@@ -14,6 +15,12 @@ function CheckoutContainer() {
     email: "",
     phone: "",
   });
+
+  useEffect(() => {
+    getPaymentMethods().then((response) => {
+      setPaymentMethods(response);
+    });
+  }, []);
 
   const { name, email, phone } = formState;
 
@@ -61,7 +68,7 @@ function CheckoutContainer() {
       phone={phone}
       handleChange={onChange}
       productsInCart={cart}
-      paymentMethods={PaymentMethods}
+      paymentMethods={paymentMethods}
       selectedOption={selectedOption}
       handleRadioChange={handleRadioChange}
       buy={handleCheckout}

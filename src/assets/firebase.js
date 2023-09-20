@@ -1,18 +1,3 @@
-export const ElementosNavbar = [
-  { id: 1, title: "Home", categoryId: "", page: "" },
-  { id: 2, title: "Nosotros", categoryId: "", page: "about" },
-  { id: 3, title: "Mat", categoryId: "mat", page: "" },
-  { id: 4, title: "Accesorios", categoryId: "accesorio", page: "" },
-  { id: 5, title: "Ropa", categoryId: "ropa", page: "" },
-  { id: 6, title: "Contacto", categoryId: "", page: "contact" },
-];
-
-export const PaymentMethods = [
-  { id: 1, method: "Efectivo" },
-  { id: 2, method: "Transferencia" },
-  { id: 3, method: "MercadoPago" },
-];
-
 export const products = [
   {
     id: "1",

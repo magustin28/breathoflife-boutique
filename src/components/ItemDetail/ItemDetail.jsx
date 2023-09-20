@@ -2,7 +2,7 @@ import propTypes from "prop-types";
 import ItemCountContainer from "../ItemCount/ItemCountContainer";
 import ButtonBack from "./ButtonBack";
 import { toUpperCaseFirstLetter, formatCurrencyWithoutDecimal } from "../../assets/utils";
-import imgProduct from "../../assets/img/importImages";
+import imgProduct from "../../assets/importImages";
 import style from "./ItemDetail.module.css";
 
 const ItemDetail = ({ item, isLoading, stock, isInStock, botonVolver }) => {

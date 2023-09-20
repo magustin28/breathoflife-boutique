@@ -2,7 +2,7 @@ import propTypes from "prop-types";
 import { Link } from "react-router-dom";
 import style from "./ItemList.module.css";
 import { formatCurrencyWithoutDecimal } from "../../assets/utils";
-import imgProduct from "../../assets/img/importImages";
+import imgProduct from "../../assets/importImages";
 
 const ItemList = ({ products, isLoading }) => {
   return (

@@ -88,6 +88,7 @@ const CartProvider = ({ children }) => {
 
   const clearCart = () => {
     setCart([]);
+    localStorage.removeItem("historyCart");
   };
 
   const getCartQuantity = () => {

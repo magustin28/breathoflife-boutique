@@ -1,21 +1,17 @@
 import Navbar from "./NavBar";
 import { useEffect, useState } from "react";
-import { getNavbarElements } from "../../assets/services";
+import { getCollectionData } from "../../assets/services";
 
 const NavbarContainer = () => {
   const [navbarElements, setNavbarElements] = useState([]);
 
   useEffect(() => {
-    getNavbarElements().then((response) => {
+    getCollectionData("navbarElements").then((response) => {
       setNavbarElements(response);
     });
   }, []);
 
-  return (
-    <>
-      <Navbar title={navbarElements} />
-    </>
-  );
+  return <Navbar title={navbarElements} />;
 };
 
 export default NavbarContainer;

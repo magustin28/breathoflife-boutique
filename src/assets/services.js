@@ -1,35 +1,16 @@
-import { products } from "./firebase";
-import { doc, getDoc, collection, getDocs, addDoc, getFirestore } from "firebase/firestore";
+import { doc, getDoc, collection, getDocs, addDoc, query, where, getFirestore } from "firebase/firestore";
 
-export const getNavbarElements = () => {
+export const getCollectionData = (collectionName) => {
   return new Promise((resolve, reject) => {
     const db = getFirestore();
-    const navbarCollectionRef = collection(db, "elementosNavbar");
+    const CollectionRef = collection(db, collectionName);
 
-    getDocs(navbarCollectionRef)
+    getDocs(CollectionRef)
       .then((querySnapshot) => {
-        const navbarElements = querySnapshot.docs.map((element) => {
-          return { id: element.id, ...element.data() };
+        const data = querySnapshot.docs.map((doc) => {
+          return { id: doc.id, ...doc.data() };
         });
-        resolve(navbarElements);
-      })
-      .catch((error) => {
-        reject(error);
-      });
-  });
-};
-
-export const getPaymentMethods = () => {
-  return new Promise((resolve, reject) => {
-    const db = getFirestore();
-    const paymentMethodsCollectionRef = collection(db, "paymentMethods");
-
-    getDocs(paymentMethodsCollectionRef)
-      .then((querySnapshot) => {
-        const paymentMethods = querySnapshot.docs.map((methods) => {
-          return { id: methods.id, ...methods.data() };
-        });
-        resolve(paymentMethods);
+        resolve(data);
       })
       .catch((error) => {
         reject(error);
@@ -39,23 +20,45 @@ export const getPaymentMethods = () => {
 
 export const getItem = (id) => {
   return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const product = products.find((p) => p.id === id);
-      if (product) {
-        resolve(product);
-      } else {
-        reject("Producto no encontrado");
-      }
-    });
+    const db = getFirestore();
+    const itemDoc = doc(db, "products", id);
+
+    getDoc(itemDoc)
+      .then((doc) => {
+        if (doc.exists()) {
+          resolve({ id: doc.id, ...doc.data() });
+        } else {
+          resolve(null);
+        }
+      })
+      .catch((error) => {
+        reject(error);
+      });
   });
 };
 
 export const getItems = (categoryId) => {
   return new Promise((resolve) => {
-    setTimeout(() => {
-      const filtroProductos = categoryId ? products.filter((product) => product.categoryId === categoryId) : products;
-      resolve(filtroProductos);
-    });
+    const db = getFirestore();
+    const productsCollectionRef = collection(db, "products");
+
+    let q;
+    if (categoryId) {
+      q = query(productsCollectionRef, where("categoryId", "==", categoryId));
+    } else {
+      q = query(productsCollectionRef);
+    }
+
+    getDocs(q)
+      .then((querySnapshot) => {
+        const products = querySnapshot.docs.map((doc) => {
+          return { id: doc.id, ...doc.data() };
+        });
+        resolve(products);
+      })
+      .catch((error) => {
+        reject(error);
+      });
   });
 };
 

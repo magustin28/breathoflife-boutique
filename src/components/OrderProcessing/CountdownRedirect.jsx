@@ -1,4 +1,4 @@
-import propTypes from "prop-types";
+import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -27,8 +27,8 @@ const CountdownRedirect = ({ seconds, to }) => {
 };
 
 CountdownRedirect.propTypes = {
-  seconds: propTypes.number.isRequired,
-  to: propTypes.string.isRequired,
+  seconds: PropTypes.number.isRequired,
+  to: PropTypes.string.isRequired,
 };
 
 export default CountdownRedirect;

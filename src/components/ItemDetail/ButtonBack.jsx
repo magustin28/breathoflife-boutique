@@ -1,18 +1,16 @@
-import propTypes from "prop-types";
+import PropTypes from "prop-types";
 import style from "./ButtonBack.module.css";
 
-const ButtonBack = ({ botonVolver }) => {
+const ButtonBack = ({ buttonBack }) => {
   return (
-    <>
-      <p className={style.buttonBack} onClick={botonVolver}>
-        Volver
-      </p>
-    </>
+    <p className={style.buttonBack} onClick={buttonBack}>
+      Volver
+    </p>
   );
 };
 
-propTypes.propTypes = {
-  botonVolver: propTypes.function,
+ButtonBack.propTypes = {
+  buttonBack: PropTypes.func,
 };
 
 export default ButtonBack;

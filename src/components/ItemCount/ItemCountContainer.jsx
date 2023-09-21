@@ -23,28 +23,34 @@ const ItemCountContainer = ({ stock, isInStock, item }) => {
     });
   };
 
-  const incrementar = () => {
+  const increaseQuantity = () => {
     if (quantity < stock) {
       setQuantity(quantity + 1);
     }
   };
 
-  const decrementar = () => {
+  const decreaseQuantity = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
     }
   };
 
-  const agregarAlCarrito = () => {
+  const addToCart = () => {
     addItem(item, quantity);
     notification();
   };
 
   return (
-    <div>
-      <ItemCount quantity={quantity} incrementar={incrementar} decrementar={decrementar} isInStock={isInStock} agregarCarrito={agregarAlCarrito} />
+    <>
+      <ItemCount
+        quantity={quantity}
+        increaseQuantity={increaseQuantity}
+        decreaseQuantity={decreaseQuantity}
+        isInStock={isInStock}
+        addToCart={addToCart}
+      />
       <ToastContainer />
-    </div>
+    </>
   );
 };
 

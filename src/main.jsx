@@ -21,7 +21,7 @@ initializeApp(firebaseConfig);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter basename="/e-commerce-yoga">
+    <BrowserRouter>
       <App />
     </BrowserRouter>
   </React.StrictMode>

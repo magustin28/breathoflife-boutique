@@ -32,7 +32,7 @@ const ItemDetailContainer = () => {
     navigate(-1);
   };
 
-  return <ItemDetail item={item} isLoading={isLoading} stock={stock} isInStock={isInStock} botonVolver={handleGoBack} />;
+  return <ItemDetail item={item} isLoading={isLoading} stock={stock} isInStock={isInStock} buttonBack={handleGoBack} />;
 };
 
 export default ItemDetailContainer;

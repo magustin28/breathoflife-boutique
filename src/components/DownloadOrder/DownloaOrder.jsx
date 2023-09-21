@@ -1,4 +1,4 @@
-import propTypes from "prop-types";
+import PropTypes from "prop-types";
 import { formatCurrency, formatCurrencyWithoutDecimal } from "../../assets/utils";
 import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
 
@@ -92,7 +92,7 @@ function DownloaOrder({ order }) {
 }
 
 DownloaOrder.propTypes = {
-  order: propTypes.object.isRequired,
+  order: PropTypes.object.isRequired,
 };
 
 export default DownloaOrder;

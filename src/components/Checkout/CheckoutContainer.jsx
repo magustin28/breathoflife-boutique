@@ -2,10 +2,10 @@ import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CartContext from "../../context/CartContext";
 import Checkout from "./Checkout";
-import { getPaymentMethods } from "../../assets/services";
+import { getCollectionData } from "../../assets/services";
 
 function CheckoutContainer() {
-  const { cart, updateOrder } = useContext(CartContext);
+  const { cart, updateOrder, getCartQuantity, getTotalPrice, shippingCost, getTotalCount } = useContext(CartContext);
   const navigate = useNavigate();
   const [paymentMethods, setPaymentMethods] = useState([]);
   const [selectedOption, setSelectedOption] = useState("");
@@ -17,7 +17,7 @@ function CheckoutContainer() {
   });
 
   useEffect(() => {
-    getPaymentMethods().then((response) => {
+    getCollectionData("paymentMethods").then((response) => {
       setPaymentMethods(response);
     });
   }, []);
@@ -73,6 +73,10 @@ function CheckoutContainer() {
       handleRadioChange={handleRadioChange}
       buy={handleCheckout}
       isFormComplete={isFormComplete}
+      getCartQuantity={getCartQuantity()}
+      getTotalPrice={getTotalPrice()}
+      shippingCost={shippingCost()}
+      getTotalCount={getTotalCount()}
     />
   );
 }

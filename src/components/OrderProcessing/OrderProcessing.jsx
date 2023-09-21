@@ -1,4 +1,4 @@
-import propTypes from "prop-types";
+import PropTypes from "prop-types";
 import { formatCurrency, formatCurrencyWithoutDecimal } from "../../assets/utils";
 import style from "./OrderProcessing.module.css";
 import DownloaOrderContainer from "../DownloadOrder/DownloaOrderContainer";
@@ -64,7 +64,7 @@ function OrderProcessing({ order, isLoading }) {
             </div>
             <div className="mt-4 d-flex justify-content-between align-items-center">
               <DownloaOrderContainer order={order} />
-              <CountdownRedirect seconds={15} to="/e-commerce-yoga/" />
+              <CountdownRedirect seconds={12} to="/e-commerce-yoga/" />
             </div>
           </div>
         </div>
@@ -74,8 +74,8 @@ function OrderProcessing({ order, isLoading }) {
 }
 
 OrderProcessing.propTypes = {
-  order: propTypes.object.isRequired,
-  isLoading: propTypes.bool.isRequired,
+  order: PropTypes.object.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 export default OrderProcessing;

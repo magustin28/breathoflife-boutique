@@ -1,6 +1,5 @@
 /* ESTILOS PARTICULARES */
 /* estilos -> Order */
-
 .widthOrder {
   width: 45%;
 }
@@ -9,7 +8,7 @@
   background-color: #e0cda9;
 }
 
-/* estilos -> Envio */
+/* estilos -> shippingCost */
 .ship {
   color: #00a650;
 }

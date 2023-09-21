@@ -1,14 +1,25 @@
-import PropTypes from "prop-types";
-import { useContext } from "react";
-import CartContext from "../../context/CartContext";
+import PropTypes, { oneOfType } from "prop-types";
 import { formatCurrency, formatCurrencyWithoutDecimal } from "../../assets/utils";
 import style from "./Checkout.module.css";
 
-function Checkout({ name, email, phone, handleChange, productsInCart, paymentMethods, selectedOption, handleRadioChange, buy, isFormComplete }) {
-  const { getCartQuantity, getTotalPrice, shippingCost, getTotalCount } = useContext(CartContext);
-
+function Checkout({
+  name,
+  email,
+  phone,
+  handleChange,
+  productsInCart,
+  paymentMethods,
+  selectedOption,
+  handleRadioChange,
+  buy,
+  isFormComplete,
+  getCartQuantity,
+  getTotalPrice,
+  shippingCost,
+  getTotalCount,
+}) {
   return (
-    <div className="d-flex justify-content-center mt-5 mx-2 gap-4">
+    <div className="d-flex justify-content-center my-5 mx-2 gap-4">
       <div className="col-10 ">
         <div className={`border rounded border-dark-subtle fs-5 pb-4 ${style.bgcheckout}`}>
           <div className="border-bottom border-dark-subtle">
@@ -64,18 +75,18 @@ function Checkout({ name, email, phone, handleChange, productsInCart, paymentMet
               <p className="ms-4 mt-3 fw-semibold fs-5">Resumen de compra</p>
             </div>
             <div className="d-flex justify-content-between mt-1">
-              <p className="ms-4 mt-3 mb-0">Productos ({getCartQuantity()})</p>
-              <p className="me-4 mt-3 mb-0">{formatCurrency(getTotalPrice())}</p>
+              <p className="ms-4 mt-3 mb-0">Productos ({getCartQuantity})</p>
+              <p className="me-4 mt-3 mb-0">{formatCurrency(getTotalPrice)}</p>
             </div>
             <div className="d-flex justify-content-between mt-1">
               <p className="ms-4 mb-0">Envío</p>
-              <p className={`me-4 mb-0 ${typeof shippingCost() !== "number" ? `${style.ship} fw-semibold` : ""}`}>
-                {typeof shippingCost() === "number" ? formatCurrency(shippingCost()) : shippingCost()}
+              <p className={`me-4 mb-0 ${typeof shippingCost !== "number" ? `${style.ship} fw-semibold` : ""}`}>
+                {typeof shippingCost === "number" ? formatCurrency(shippingCost) : shippingCost}
               </p>
             </div>
             <div className="d-flex justify-content-between mt-4">
               <p className="ms-4 mb-0 fs-5 fw-bolder">Total</p>
-              <p className="me-4 mb-0 fs-5 fw-bolder">{formatCurrency(getTotalCount())}</p>
+              <p className="me-4 mb-0 fs-5 fw-bolder">{formatCurrency(getTotalCount)}</p>
             </div>
           </div>
         </div>
@@ -117,6 +128,10 @@ Checkout.propTypes = {
   handleRadioChange: PropTypes.func,
   buy: PropTypes.func,
   isFormComplete: PropTypes.bool,
+  getCartQuantity: PropTypes.number.isRequired,
+  getTotalPrice: PropTypes.number.isRequired,
+  shippingCost: oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  getTotalCount: PropTypes.number.isRequired,
 };
 
 export default Checkout;

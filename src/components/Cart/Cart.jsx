@@ -1,17 +1,22 @@
-import PropTypes from "prop-types";
+import PropTypes, { oneOfType } from "prop-types";
 import { formatCurrency, formatCurrencyWithoutDecimal } from "../../assets/utils";
-import { useContext } from "react";
 import style from "./Cart.module.css";
-import CartContext from "../../context/CartContext";
 import { Link } from "react-router-dom";
 
-function Cart({ productsInCart }) {
-  const { cart, increaseQuantity, decreaseQuantity, removeItem, clearCart, getCartQuantity, getTotalPrice, shippingCost, getTotalCount } =
-    useContext(CartContext);
-
+function Cart({
+  productsInCart,
+  increaseQuantity,
+  decreaseQuantity,
+  removeItem,
+  clearCart,
+  getCartQuantity,
+  getTotalPrice,
+  shippingCost,
+  getTotalCount,
+}) {
   return (
     <div className="d-flex justify-content-center mt-5">
-      {cart.length === 0 ? (
+      {productsInCart.length === 0 ? (
         <div className={`col-7 me-4 py-5 text-center border border-dark-subtle ${style.bgcart}`}>
           <i className={`bi bi-bag ${style.bag}`}></i>
           <div className="mb-4">
@@ -58,7 +63,7 @@ function Cart({ productsInCart }) {
         </div>
       )}
       <div className={`col-4 border rounded border-dark-subtle ${style.summaryContainer} ${style.bgcart}`}>
-        {cart.length === 0 ? (
+        {productsInCart.length === 0 ? (
           <div className="border-bottom border-dark-subtle">
             <p className="ms-3 mt-3">Resumen de compra</p>
           </div>
@@ -68,18 +73,18 @@ function Cart({ productsInCart }) {
               <p className="ms-4 mt-3 fw-semibold">Resumen de compra</p>
             </div>
             <div className="d-flex justify-content-between mt-1">
-              <p className="ms-4 mt-3 mb-0">Productos ({getCartQuantity()})</p>
-              <p className="me-4 mt-3 mb-0">{formatCurrency(getTotalPrice())}</p>
+              <p className="ms-4 mt-3 mb-0">Productos ({getCartQuantity})</p>
+              <p className="me-4 mt-3 mb-0">{formatCurrency(getTotalPrice)}</p>
             </div>
             <div className="d-flex justify-content-between mt-1">
               <p className="ms-4 mb-0">Envío</p>
-              <p className={`me-4 mb-0 ${typeof shippingCost() !== "number" ? `${style.envio} fw-semibold` : ""}`}>
-                {typeof shippingCost() === "number" ? formatCurrency(shippingCost()) : shippingCost()}
+              <p className={`me-4 mb-0 ${typeof shippingCost !== "number" ? `${style.ship} fw-semibold` : ""}`}>
+                {typeof shippingCost === "number" ? formatCurrency(shippingCost) : shippingCost}
               </p>
             </div>
             <div className="d-flex justify-content-between mt-4">
               <p className="ms-4 mb-0 fs-5 fw-bolder">Total</p>
-              <p className="me-4 mb-0 fs-5 fw-bolder">{formatCurrency(getTotalCount())}</p>
+              <p className="me-4 mb-0 fs-5 fw-bolder">{formatCurrency(getTotalCount)}</p>
             </div>
             <div className="text-center mt-4">
               <Link className="px-5 py-2 btn btn-primary" to={"/e-commerce-yoga/checkout"}>
@@ -95,6 +100,14 @@ function Cart({ productsInCart }) {
 
 Cart.propTypes = {
   productsInCart: PropTypes.array.isRequired,
+  increaseQuantity: PropTypes.func.isRequired,
+  decreaseQuantity: PropTypes.func.isRequired,
+  removeItem: PropTypes.func.isRequired,
+  clearCart: PropTypes.func.isRequired,
+  getCartQuantity: PropTypes.number.isRequired,
+  getTotalPrice: PropTypes.number.isRequired,
+  shippingCost: oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  getTotalCount: PropTypes.number.isRequired,
 };
 
 export default Cart;

@@ -1,12 +1,14 @@
-import propTypes from "prop-types";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import style from "./ItemList.module.css";
-import { formatCurrencyWithoutDecimal } from "../../assets/utils";
-import imgProduct from "../../assets/importImages";
+import { formatCurrencyWithoutDecimal, imgProducts } from "../../assets/utils";
 
-const ItemList = ({ products, isLoading }) => {
+const ItemList = ({ products, isLoading, amountShipping }) => {
   return (
-    <div>
+    <>
+      <div className={`my-3 p-2 text-center text-bg-light rounded-3 shadow ${style.containerCustom}`}>
+        <p className={`mb-0 ${style.showShipping}`}>Envio Gratis por compras superiores a {formatCurrencyWithoutDecimal(amountShipping)}</p>
+      </div>
       <h2 className={`my-3 text-center ${style.title}`}>Productos</h2>
       {isLoading ? (
         <div className="d-flex justify-content-center">
@@ -18,9 +20,10 @@ const ItemList = ({ products, isLoading }) => {
         <div className="row d-flex justify-content-center">
           {products.map((item) => (
             <div key={item.id} className={`card col-3 m-3 shadow ${style.bgcard}`}>
+              {item.stock === 0 && <span className={style.outStock}>Sin Stock</span>}
               <img
                 className={`card-img-top mt-2 pt-2 ${style.productImage} ${item.img.includes("legging") ? `${style.productImageLegging}` : ""}`}
-                src={imgProduct[item.img]}
+                src={imgProducts[item.img]}
                 alt={item.name}
               />
               <div className="card-body d-flex flex-column justify-content-between">
@@ -37,13 +40,14 @@ const ItemList = ({ products, isLoading }) => {
           ))}
         </div>
       )}
-    </div>
+    </>
   );
 };
 
 ItemList.propTypes = {
-  products: propTypes.array.isRequired,
-  isLoading: propTypes.bool.isRequired,
+  products: PropTypes.array.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  amountShipping: PropTypes.number.isRequired,
 };
 
 export default ItemList;

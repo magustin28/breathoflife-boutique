@@ -1,15 +1,16 @@
 import PropTypes from "prop-types";
+import style from "./ItemCount.module.css";
 
-const ItemCount = ({ quantity, incrementar, decrementar, agregarCarrito, isInStock }) => {
+const ItemCount = ({ quantity, increaseQuantity, decreaseQuantity, addToCart, isInStock }) => {
   return isInStock ? (
     <div className="d-flex justify-content-center">
       <div className="col-6 mt-4">
         <div className="d-flex justify-content-around align-items-center border border-secondary-subtle rounded bg-light my-3">
-          <i className="bi bi-dash text-primary fs-4" onClick={decrementar}></i>
+          <i className="bi bi-dash text-primary fs-4" onClick={decreaseQuantity}></i>
           <p className="mb-0 fs-5">{quantity}</p>
-          <i className="bi bi-plus text-primary fs-4" onClick={incrementar}></i>
+          <i className="bi bi-plus text-primary fs-4" onClick={increaseQuantity}></i>
         </div>
-        <button className="rounded w-100 btn btn btn-outline-primary bg-light" onClick={agregarCarrito}>
+        <button className={`rounded w-100 btn btn ${style.buttonAddCart}`} onClick={addToCart}>
           Agregar al carrito
         </button>
       </div>
@@ -23,9 +24,9 @@ const ItemCount = ({ quantity, incrementar, decrementar, agregarCarrito, isInSto
 
 ItemCount.prototype = {
   quantity: PropTypes.number.isRequired,
-  incrementar: PropTypes.function,
-  decrementar: PropTypes.function,
-  agregarCarrito: PropTypes.function,
+  increaseQuantity: PropTypes.func.isRequired,
+  decreaseQuantity: PropTypes.func.isRequired,
+  addToCart: PropTypes.func.isRequired,
   isInStock: PropTypes.bool.isRequired,
 };
 

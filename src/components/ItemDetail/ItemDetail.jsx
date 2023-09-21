@@ -1,13 +1,12 @@
-import propTypes from "prop-types";
+import PropTypes from "prop-types";
 import ItemCountContainer from "../ItemCount/ItemCountContainer";
 import ButtonBack from "./ButtonBack";
-import { toUpperCaseFirstLetter, formatCurrencyWithoutDecimal } from "../../assets/utils";
-import imgProduct from "../../assets/importImages";
+import { toUpperCaseFirstLetter, formatCurrencyWithoutDecimal, imgProducts } from "../../assets/utils";
 import style from "./ItemDetail.module.css";
 
-const ItemDetail = ({ item, isLoading, stock, isInStock, botonVolver }) => {
+const ItemDetail = ({ item, isLoading, stock, isInStock, buttonBack }) => {
   return (
-    <div>
+    <>
       {isLoading ? (
         <div className="d-flex justify-content-center">
           <div className={`spinner-border ${style.isLoading}`} role="status">
@@ -20,12 +19,12 @@ const ItemDetail = ({ item, isLoading, stock, isInStock, botonVolver }) => {
             <div className="mt-5 ms-5">
               <p className="fs-3">{`Lo sentimos...:(`}</p>
               <p className="fs-5">El producto solicitado no está disponible en este momento.</p>
-              <ButtonBack botonVolver={botonVolver} />
+              <ButtonBack buttonBack={buttonBack} />
             </div>
           ) : (
             <div>
               <div className="mt-5 d-flex">
-                <ButtonBack botonVolver={botonVolver} />
+                <ButtonBack buttonBack={buttonBack} />
                 <span className="mx-2">|</span>
                 <p>{toUpperCaseFirstLetter(item.categoryId)}</p>
               </div>
@@ -34,7 +33,7 @@ const ItemDetail = ({ item, isLoading, stock, isInStock, botonVolver }) => {
                   <div className="col-6 d-flex justify-content-center">
                     <img
                       className={`img-fluid ${style.imageItem} ${item.img.includes("legging") ? `${style.imageItemLegging}` : ""}`}
-                      src={imgProduct[item.img]}
+                      src={imgProducts[item.img]}
                       alt={item.name}
                     />
                   </div>
@@ -57,15 +56,16 @@ const ItemDetail = ({ item, isLoading, stock, isInStock, botonVolver }) => {
           )}
         </>
       )}
-    </div>
+    </>
   );
 };
 
 ItemDetail.propTypes = {
-  products: propTypes.object,
-  isLoading: propTypes.bool.isRequired,
-  stock: propTypes.number.isRequired,
-  isInStock: propTypes.bool.isRequired,
+  item: PropTypes.object,
+  isLoading: PropTypes.bool.isRequired,
+  stock: PropTypes.number.isRequired,
+  isInStock: PropTypes.bool.isRequired,
+  buttonBack: PropTypes.func,
 };
 
 export default ItemDetail;

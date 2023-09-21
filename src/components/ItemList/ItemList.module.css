@@ -25,3 +25,35 @@
   display: block;
   margin: 0 auto;
 }
+
+/* estilos -> Out Stock */
+.outStock {
+  position: absolute;
+  top: 11%;
+  left: 29%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(128, 128, 128, 0.75);
+  color: white;
+  padding: 0.6rem;
+  font-size: 2rem;
+  font-weight: bold;
+  z-index: 1;
+}
+
+/* estilos -> showShipping */
+.containerCustom {
+  overflow: hidden;
+  white-space: nowrap;
+}
+.showShipping {
+  animation: slideInRight 20s linear infinite;
+}
+
+@keyframes slideInRight {
+  0% {
+    transform: translateX(-75%);
+  }
+  100% {
+    transform: translateX(75%);
+  }
+}

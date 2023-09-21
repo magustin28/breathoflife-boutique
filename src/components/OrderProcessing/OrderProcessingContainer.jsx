@@ -23,10 +23,6 @@ function OrderProcessingContainer() {
       });
   }, []);
 
-  return (
-    <div className="">
-      <OrderProcessing order={order} isLoading={isLoading} />
-    </div>
-  );
+  return <OrderProcessing order={order} isLoading={isLoading} />;
 }
 export default OrderProcessingContainer;

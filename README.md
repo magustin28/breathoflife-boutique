@@ -43,7 +43,7 @@ This e-commerce offers Mat, accessories and clothes for sale. All of them are li
 
 ## Demo
 
-[screen-capture.webm](https://github.com/Florencia-Harmath/Hera-React/assets/130718452/8aa838ca-f7d3-4869-8158-a6d74b6b543b)
+[video.webm](https://github.com/magustin28/e-commerce-yoga/assets/86117922/fdb1cb30-dff5-4cfd-9ced-0ee8bd285e2d)
 
 ## Requirements
 

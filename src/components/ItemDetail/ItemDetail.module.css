@@ -1,4 +1,13 @@
 /* ESTILOS PARTICULARES */
+/* estilos -> buttonBack */
+.buttonBack {
+  cursor: pointer;
+}
+
+.buttonBack:hover {
+  text-decoration: underline;
+}
+
 /* estilos -> isLoading */
 .isLoading {
   margin: 2rem;
@@ -16,12 +25,12 @@
   color: #555;
 }
 
-/* estilos -> Imagen */
+/* estilos -> Image */
 .imageItem {
   width: 30rem;
 }
 
-/* estilos -> Imagen Legging */
+/* estilos -> Image Legging */
 .imageItemLegging {
   max-height: 33rem;
   width: auto;

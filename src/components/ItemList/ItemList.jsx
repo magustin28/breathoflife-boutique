@@ -7,7 +7,7 @@ const ItemList = ({ products, isLoading, amountShipping }) => {
   return (
     <>
       <div className={`my-3 p-2 text-center text-bg-light rounded-3 shadow ${style.containerCustom}`}>
-        <p className={`mb-0 ${style.showShipping}`}>Envio Gratis por compras superiores a {formatCurrencyWithoutDecimal(amountShipping)}</p>
+        <p className={`mb-0 ${style.showShipping}`}>ENVÍO GRATIS EN COMPRAS MAYORES A {formatCurrencyWithoutDecimal(amountShipping)}</p>
       </div>
       <h2 className={`my-3 text-center ${style.title}`}>Productos</h2>
       {isLoading ? (

@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import ItemCountContainer from "../ItemCount/ItemCountContainer";
-import ButtonBack from "./ButtonBack";
 import { toUpperCaseFirstLetter, formatCurrencyWithoutDecimal, imgProducts } from "../../assets/utils";
 import style from "./ItemDetail.module.css";
 
@@ -19,12 +18,16 @@ const ItemDetail = ({ item, isLoading, stock, isInStock, buttonBack }) => {
             <div className="mt-5 ms-5">
               <p className="fs-3">{`Lo sentimos...:(`}</p>
               <p className="fs-5">El producto solicitado no está disponible en este momento.</p>
-              <ButtonBack buttonBack={buttonBack} />
+              <p className="btn btn-primary" onClick={buttonBack}>
+                Volver
+              </p>
             </div>
           ) : (
             <div>
               <div className="mt-5 d-flex">
-                <ButtonBack buttonBack={buttonBack} />
+                <p className={style.buttonBack} onClick={buttonBack}>
+                  Volver
+                </p>
                 <span className="mx-2">|</span>
                 <p>{toUpperCaseFirstLetter(item.categoryId)}</p>
               </div>

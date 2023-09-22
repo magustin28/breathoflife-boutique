@@ -19,11 +19,7 @@ const CountdownRedirect = ({ seconds, to }) => {
     return () => clearInterval(timer);
   }, [count, to]);
 
-  return (
-    <div>
-      <p className="mb-0 fw-semibold">Redireccionando a la página principal en {count} segundos...</p>
-    </div>
-  );
+  return <p className="mb-0 fw-semibold">Redireccionando a la página principal en {count} segundos...</p>;
 };
 
 CountdownRedirect.propTypes = {

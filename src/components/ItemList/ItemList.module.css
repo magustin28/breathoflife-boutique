@@ -1,5 +1,5 @@
 /* ESTILOS PARTICULARES */
-/* estilos -> Título */
+/* estilos -> Title  */
 .title {
   text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
 }
@@ -14,12 +14,12 @@
   background-color: #e0cda9;
 }
 
-/* estilos -> Imagen */
+/* estilos -> Image */
 .productImage {
   max-height: 20rem;
 }
 
-/* estilos -> Imagen Legging */
+/* estilos -> Image Legging */
 .productImageLegging {
   width: auto;
   display: block;
@@ -46,14 +46,14 @@
   white-space: nowrap;
 }
 .showShipping {
-  animation: slideInRight 20s linear infinite;
+  animation: slideInLeft 20s linear infinite;
 }
 
-@keyframes slideInRight {
+@keyframes slideInLeft {
   0% {
-    transform: translateX(-75%);
+    transform: translateX(75%);
   }
   100% {
-    transform: translateX(75%);
+    transform: translateX(-75%);
   }
 }

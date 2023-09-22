@@ -8,7 +8,7 @@ function CheckoutContainer() {
   const { cart, updateOrder, getCartQuantity, getTotalPrice, shippingCost, getTotalCount } = useContext(CartContext);
   const navigate = useNavigate();
   const [paymentMethods, setPaymentMethods] = useState([]);
-  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOption, setSelectedOption] = useState(false);
   const [isFormComplete, setFormComplete] = useState(false);
   const [formState, setFormState] = useState({
     name: "",
@@ -35,20 +35,20 @@ function CheckoutContainer() {
     setSelectedOption(event.target.value);
   };
 
-  const validarEmail = (email) => email.includes("@") && email.includes(".com");
+  const validateEmail = (email) => {
+    const atIndex = email.indexOf("@");
+    const dotComIndex = email.indexOf(".com");
+    return atIndex !== -1 && dotComIndex !== -1 && atIndex < dotComIndex;
+  };
 
-  const validarPhone = (phone) => {
+  const validatePhone = (phone) => {
     phone = phone.replace(/\s+/g, "").replace(/-/g, "");
     return /^\d{10,}$/.test(phone);
   };
 
   useEffect(() => {
-    const isDataComplete =
-      name && validarEmail(email) && validarPhone(phone) && selectedOption !== null && selectedOption !== undefined && selectedOption !== "";
-
-    if (isDataComplete) {
-      setFormComplete(true);
-    }
+    const isDataComplete = name && validateEmail(email) && validatePhone(phone) && selectedOption;
+    setFormComplete(isDataComplete);
   }, [name, email, phone, selectedOption]);
 
   const handleCheckout = () => {
